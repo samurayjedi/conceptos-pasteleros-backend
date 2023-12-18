@@ -1,0 +1,43 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": "> 0.25%, not dead",
+        "useBuiltIns": "usage", // add only the necessary polyfills, depending on whether any statement needs it
+        "corejs": "3.26.1", // version of core-js package
+        "bugfixes": true // try to compile a broken syntax that X browser doesn't support
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic",
+        "importSource": "@emotion/react"
+      }
+    ],
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    // @emotion
+    [
+      "@emotion",
+      {
+        "importMap": {
+          "@mui/system": {
+            "styled": {
+              "canonicalImport": ["@emotion/styled", "default"],
+              "styledBaseImport": ["@mui/system", "styled"]
+            }
+          },
+          "@mui/material/styles": {
+            "styled": {
+              "canonicalImport": ["@emotion/styled", "default"],
+              "styledBaseImport": ["@mui/material/styles", "styled"]
+            }
+          }
+        }
+      }
+    ]
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 12
+  },
+  "plugins": [
+    "@emotion", // must be firsts
+    "@babel",
+    "react",
+    "prettier"
+  ],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    // Prettier
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    // prettier
+    "prettier/prettier": "error",
+    // @emotion
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "@emotion/pkg-renaming": "error",
+    "@emotion/no-vanilla": "error",
+    "@emotion/import-from-emotion": "error",
+    "@emotion/styled-import": "error",
+    "@emotion/syntax-preference": [2, "object"],
+    // @emotion, fix css unknown property for css prop
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    // Missing file extension "ts", "tsx"
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    // other bothersome rules...
+    "react/jsx-props-no-spreading": "off",
+    "no-use-before-define": "off",
+    "react/require-default-props": "off",
+    "import/prefer-default-export": "off",
+    "no-plusplus": "off",
+    "consistent-return": "off",
+    "default-case": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-param-reassign": "warn",
+    "no-case-declarations": "off",
+    "camelcase": "off"
+  },
+  // Missing file extension "ts", "tsx"
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  // Configuration for typescript files
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+      ]
+    }
+  ]
+}
