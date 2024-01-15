@@ -108,7 +108,18 @@ const FormBody = React.memo(
     processing: boolean;
   }) => {
     const { t } = useTranslation();
-    const { categories } = usePage().props;
+    const sourceCategories = usePage().props.categories as Record<
+      string,
+      string
+    >[];
+    const categories = (() => {
+      const piwi = {} as Record<string, string>;
+      sourceCategories.forEach((cat) => {
+        piwi[cat.id] = cat.label;
+      });
+
+      return piwi;
+    })();
     const { setCategoriesDialogOpen } = useContext(CTX);
     const [fuckErrors, onChangeDecorator] = useErrors();
     const [setupVisible, setSetupVisible] = useState(

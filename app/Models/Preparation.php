@@ -1,13 +1,18 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+class Preparation {
+    public $id, $name, $ingredients, $instructions, $id_recipe, $created_at, $updated_at;
 
-class Preparation extends Model
-{
-    use HasFactory;
-
-    protected $table = 'preparations';
+    public function toArray() {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'ingredients' => json_decode($this->ingredients),
+            'instructions' => $this->instructions,
+            'id_recipe' => $this->id_recipe,
+            'create_at' => $this->created_at,
+            'update_at' => $this->updated_at,
+        ];
+    }
 }

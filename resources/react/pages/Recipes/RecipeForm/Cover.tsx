@@ -79,7 +79,7 @@ const InputFileRoot = styled.label<{
     fontWeight: 'bold',
   },
   '&.selected': {
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url('${image}')`,
     backgroundSize: '100% 100%',
     backgroundRepeat: 'no-repeat',
     '&:before, &:after': {

@@ -3,8 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\Recipes;
-use App\Http\Controllers\Categories;
+use App\Http\Controllers\RecipesController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Mobile\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,32 @@ use App\Http\Controllers\Categories;
 |
 */
 
-Route::get('/', function () { return redirect()->to('dashboard'); })
-    ->name('home');
+Route::get('/', [HomeController::class, 'render'])->name('home');
+Route::get('/getimage/image/{image}', function ($piwi) {
+    $image = urldecode($piwi);
+    $filename = basename($image);
+    $file_extension = strtolower(substr(strrchr($filename,"."),1));
+    
+    switch( $file_extension ) {
+        case "gif": $ctype="image/gif"; break;
+        case "png": $ctype="image/png"; break;
+        case "jpeg":
+        case 'jfif':
+        case 'pjpeg':
+        case "jpg": $ctype="image/jpeg"; break;
+        case "svg": $ctype="image/svg+xml"; break;
+        default:
+    }
+    
+    header('Content-type: ' . $ctype);
+    readfile(public_path("/storage/uploads/$image"));
+});
 
 Route::get('/dashboard', function () { return Inertia::render('Dashboard'); })
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::controller(Recipes::class)->group(function () {
+Route::controller(RecipesController::class)->group(function () {
     Route::get('/dashboard/recipes/new-recipe', 'newForm')
         ->middleware(['auth', 'verified'])
         ->name('new-recipe');
@@ -50,7 +69,7 @@ Route::controller(Recipes::class)->group(function () {
         ->name('recipes');
 });
 
-Route::post('/dashboard/categories', [Categories::class, 'store'])
+Route::post('/dashboard/categories', [CategoriesController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('categories.store');
 
