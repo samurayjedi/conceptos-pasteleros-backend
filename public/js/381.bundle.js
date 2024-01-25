@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[381],{6381:(e,t,n)=>{n.r(t),n.d(t,{default:()=>s});var u=n(8129),r=n.n(u),a=n(8872),c=n(5944);function s(){return(0,c.tZ)(a.default,{action:r()("new-recipe.store")})}}}]);

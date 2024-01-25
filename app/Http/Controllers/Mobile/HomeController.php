@@ -6,36 +6,36 @@ use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Recipes;
-use App\Models\Recipe;
 
 class HomeController extends Controller
 {
     public function render(Request $request) {
         $isMobile = request()->header('X-Inertia-isMobile');
         if ($isMobile) {
-            $fn = function ($categoryId) {
-                $queryIds = DB::select('SELECT id_recipe FROM recipe_categories_xref WHERE id_category=?', [$categoryId]);
-                $ids = []; $aux = [];
-                foreach ($queryIds as $piwi) {
-                    $ids[] = $piwi->id_recipe;
-                    $aux[] = '?';
+            $basics = [];
+            $classics = [];
+            $gourmet = [];
+            $recipes = Recipes::select()->get();
+            foreach ($recipes as $recipe) {
+                $categories = [];
+                foreach ($recipe->categories as $category) {
+                    $categories[] = $category->slug;
                 }
-                array_pop($aux);
-                $query = Recipes::select()
-                    ->where('id=? OR '.implode(' OR id=',$aux), $ids)
-                    ->get();
-                $recipes = [];
-                foreach ($query as $recipe) {
-                    $recipes[] = $recipe->toArray();
+                if (in_array('basics', $categories)) {
+                    $basics[] = $recipe->toArray();
                 }
-
-                return $recipes;
-            };
+                if (in_array('classics', $categories)) {
+                    $classics[] = $recipe->toArray();
+                }
+                if (in_array('gourmet', $categories)) {
+                    $gourmet[] = $recipe->toArray();
+                }
+            }
 
             return Inertia::render('Home', [
-                'basics' => $fn(1),
-                'classics' => $fn(2),
-                'gourmet' => $fn(3),
+                'basics' => $basics,
+                'classics' => $classics,
+                'gourmet' => $gourmet,
             ]);
         }
     

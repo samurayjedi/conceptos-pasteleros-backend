@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[527],{1527:(e,t,i)=>{i.r(t),i.d(t,{default:()=>c});var r=i(3999),s=i(8129),u=i.n(s),a=i(8872),p=i(5944);function c(){const e=(0,r.qt)().props.recipe;return(0,p.tZ)(a.default,{action:u()("update-recipe.store",{id:e.id}),values:{...e,categories:e.categories.map((e=>`${e.id}`)),is_premium:e.premium}})}}}]);

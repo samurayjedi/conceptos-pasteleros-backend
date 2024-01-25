@@ -71,5 +71,8 @@
     "reselect": "^4.1.7",
     "tinymce": "^6.7.3",
     "ziggy-js": "^1.8.1"
+  },
+  "scripts": {
+    "eject": "npx webpack --config webpack.config.prod.js && cd .. && zip -r conceptos-backend.zip ./conceptos-pasteleros-backend -x ./conceptos-pasteleros-backend/resources/react/\\* ./conceptos-pasteleros-backend/node_modules/\\* ./conceptos-pasteleros-backend/.git/\\* ./conceptos-pasteleros-backend/.babelrc ./conceptos-pasteleros-backend/.eslintrc.json ./conceptos-pasteleros-backend/.prettierrc.json ./conceptos-pasteleros-backend/jsconfig.json ./conceptos-pasteleros-backend/package-lock.json ./conceptos-pasteleros-backend/package.json ./conceptos-pasteleros-backend/webpack.common.config.js ./conceptos-pasteleros-backend/webpack.config.js ./conceptos-pasteleros-backend/webpack.config.prod.js ./conceptos-pasteleros-backend/.editorconfig ./conceptos-pasteleros-backend/global.d.ts ./conceptos-pasteleros-backend/tsconfig.json"
   }
 }
