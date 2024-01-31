@@ -20,6 +20,8 @@ class Recipes extends Migration
             $table->text('setup')->nullable();
             $table->boolean('premium')->default(false);
             $table->string('cost')->nullable();
+            $table->boolean('mold')->default(false);
+            $table->text('mold_vars')->nullable();
             $table->timestamps();
         });
     }

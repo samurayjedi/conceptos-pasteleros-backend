@@ -80,7 +80,7 @@ const InputFileRoot = styled.label<{
   },
   '&.selected': {
     backgroundImage: `url('${image}')`,
-    backgroundSize: '100% 100%',
+    backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     '&:before, &:after': {
       display: 'none',
