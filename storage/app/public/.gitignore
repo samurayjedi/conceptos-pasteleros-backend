@@ -2,3 +2,7 @@
 !.gitignore
 !/uploads
 !/uploads/.gitconserve
+!/images
+!/images/*
+!/tinymce
+!/tinymce/*
