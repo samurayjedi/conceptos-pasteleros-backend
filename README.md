@@ -25,3 +25,10 @@ npm install
 php artisan storage:link
 php artisan migrate
 ```
+
+## Run
+
+```bash
+php artisan serve
+npx webpack serve
+```
