@@ -126,7 +126,10 @@ const RecipesTable = React.memo(() => {
         </TableHead>
         <TableBody>
           {recipes.map((recipe) => (
-            <RecipeTableRow recipe={recipe} />
+            <RecipeTableRow
+              key={`recipe-table-row-${recipe.id}`}
+              recipe={recipe}
+            />
           ))}
         </TableBody>
         <RecipeTableFooter />
@@ -247,7 +250,7 @@ function PreparationsTable({
           </TableHead>
           <TableBody>
             {preparations.map(({ id, name, ingredients, instructions }) => (
-              <TableRow>
+              <TableRow key={`preparation-table-row-${id}`}>
                 <TableCell align="center">{id}</TableCell>
                 <TableCell>{name}</TableCell>
                 <TableCell align="center">

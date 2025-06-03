@@ -25,35 +25,33 @@ export default function MyBreadcrumbs() {
           mb: 1,
         }}
       >
-        {paths.map((path, index) => (
-          <>
-            {(() => {
-              switch (path) {
-                case '':
-                  return (
-                    <Link
-                      href="/"
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
-                      <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-                      {t('Home')}
-                    </Link>
-                  );
-                default:
-                  return index < paths.length - 1 ? (
-                    <Link
-                      href={route(path)}
-                      style={{ textDecoration: 'none', color: 'white' }}
-                    >
-                      {t(_.startCase(path))}
-                    </Link>
-                  ) : (
-                    <span>{t(_.startCase(path))}</span>
-                  );
-              }
-            })()}
-          </>
-        ))}
+        {paths.map((path, index) => [
+          (() => {
+            switch (path) {
+              case '':
+                return (
+                  <Link
+                    href="/"
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+                    {t('Home')}
+                  </Link>
+                );
+              default:
+                return index < paths.length - 1 ? (
+                  <Link
+                    href={route(path)}
+                    style={{ textDecoration: 'none', color: 'white' }}
+                  >
+                    {t(_.startCase(path))}
+                  </Link>
+                ) : (
+                  <span>{t(_.startCase(path))}</span>
+                );
+            }
+          })(),
+        ])}
       </Breadcrumbs>
       <Box sx={{ flex: 1 }} />
       <Link
